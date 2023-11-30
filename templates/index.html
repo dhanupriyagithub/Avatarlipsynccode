@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text to Avatar Lip Sync</title>
+</head>
+<body>
+    <h1>Text to Avatar Lip Sync</h1>
+    <form method="post" action="{% url 'lip_sync' %}">
+        {% csrf_token %}
+        <label for="text">Enter Text:</label>
+        <input type="text" name="text" required>
+        <button type="submit">Convert</button>
+    </form>
+
+    {% if audio_path %}
+    <audio controls>
+        <source src="{{ audio_path }}" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+    {% endif %}
+
+    {% if video_path %}
+    <video width="640" height="480" controls>
+        <source src="{{ video_path }}" type="video/mp4">
+        Your browser does not support the video element.
+    </video>
+    {% endif %}
+</body>
+</html>
